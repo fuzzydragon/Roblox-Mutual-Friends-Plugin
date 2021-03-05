@@ -1,0 +1,63 @@
+async function Get(URL) {
+    const Response = await fetch(URL)
+    const Body = await Response.json()
+
+    return Body
+}
+
+async function GetFriendsForUserId(UserId) {
+    let FriendObjects = (await Get(`https://friends.roblox.com/v1/users/${UserId}/friends/`)).data
+    const Friends = []
+
+    for (const Friend of FriendObjects) {
+        Friends.push(Friend.name)
+    }
+
+    return Friends
+}
+
+async function GetMutualFriends(UserId, TargetId) {
+    const UserFriends = await GetFriendsForUserId(UserId)
+    const TargetFriends = await GetFriendsForUserId(TargetId)
+
+    console.log(TargetFriends)
+
+    const Mutuals = []
+
+    for (const UserFriend of UserFriends) {
+        console.log(UserFriend, TargetFriends.includes(UserFriend))
+        if (TargetFriends.includes(UserFriend)) {
+            Mutuals.push(UserFriend)
+        }
+    }
+
+    return Mutuals
+}
+
+async function Start() {
+    const TargetId = document.URL.match(/\d+/)[0]
+    const UserId = (await Get(`https://www.roblox.com/mobileapi/userinfo`)).UserID
+
+    console.log(TargetId, UserId)
+
+    let Header = document.getElementsByClassName(`header-caption`)[0]
+    let Container = document.createElement(`p`)
+
+    Container.innerHTML = `Loading Mutual Friends...`
+
+    if (TargetId != UserId) {
+        const MutualFriends = await GetMutualFriends(UserId, TargetId)
+
+        if (MutualFriends.length > 0) {
+            Container.innerHTML = `Mutual Friends: ${MutualFriends.join(`, `)}`
+        } else {
+            Container.innerHTML = `No Mutual Friends!`
+        }
+    } else {
+        Container.innerHTML = `Welcome to your profile!`
+    }
+
+    Header.appendChild(Container)
+}
+
+try { Start() } catch {} // :3
