@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name         Mutual Friends
 // @namespace    http://tampermonkey.net/
@@ -54,18 +53,18 @@ async function Start() {
     let Header = document.getElementsByClassName(`header-caption`)[0]
     let Container = document.createElement(`p`)
 
-    Container.innerHTML = `Loading Mutual Friends...`
+    Container.innerText = `Loading Mutual Friends...`
 
     if (TargetId != UserId) {
         const MutualFriends = await GetMutualFriends(UserId, TargetId)
 
         if (MutualFriends.length > 0) {
-            Container.innerHTML = `Mutual Friends: ${MutualFriends.join(`, `)}`
+            Container.innerText = `Mutual Friends: ${MutualFriends.join(`, `)}`
         } else {
-            Container.innerHTML = `No Mutual Friends!`
+            Container.innerText = `No Mutual Friends!`
         }
     } else {
-        Container.innerHTML = `Welcome to your profile!`
+        Container.innerText = `Welcome to your profile!`
     }
 
     Header.appendChild(Container)
