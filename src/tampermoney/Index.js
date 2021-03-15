@@ -29,9 +29,7 @@ async function GetFriendsForUserId(UserId) {
 async function GetMutualFriends(UserId, TargetId) {
     const UserFriends = await GetFriendsForUserId(UserId)
     const TargetFriends = await GetFriendsForUserId(TargetId)
-
-    console.log(TargetFriends)
-
+    
     const Mutuals = []
 
     for (const UserFriend of UserFriends) {
