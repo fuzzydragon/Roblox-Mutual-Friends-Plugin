@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Mutual Friends
+// @name         Mutual friends
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  List mutual friends
@@ -8,66 +8,61 @@
 // @grant        none
 // ==/UserScript==
 
-async function Get(URL) {
-    const Response = await fetch(URL)
-    const Body = await Response.json()
-
-    return Body
-}
-
-async function GetFriendsForUserId(UserId) {
-    let FriendObjects = (await Get(`https://friends.roblox.com/v1/users/${UserId}/friends/`)).data
-    const Friends = []
-
-    for (const Friend of FriendObjects) {
-        Friends.push(Friend.name)
-    }
-
-    return Friends
-}
-
-async function GetMutualFriends(UserId, TargetId) {
-    const UserFriends = await GetFriendsForUserId(UserId)
-    const TargetFriends = await GetFriendsForUserId(TargetId)
-
-    console.log(TargetFriends)
-
-    const Mutuals = []
-
-    for (const UserFriend of UserFriends) {
-        console.log(UserFriend, TargetFriends.includes(UserFriend))
-        if (TargetFriends.includes(UserFriend)) {
-            Mutuals.push(UserFriend)
-        }
-    }
-
-    return Mutuals
-}
-
-async function Start() {
-    const TargetId = document.URL.match(/\d+/)[0]
-    const UserId = (await Get(`https://www.roblox.com/mobileapi/userinfo`)).UserID
-
-    console.log(TargetId, UserId)
-
-    let Header = document.getElementsByClassName(`header-caption`)[0]
-    let Container = document.createElement(`p`)
-
-    Container.innerText = `Loading Mutual Friends...`
-
-    if (TargetId != UserId) {
-        const MutualFriends = await GetMutualFriends(UserId, TargetId)
-
-        if (MutualFriends.length > 0) {
-            Container.innerText = `Mutual Friends: ${MutualFriends.join(`, `)}`
-        } else {
-            Container.innerText = `No Mutual Friends!`
-        }
-    } else {
-        Container.innerText = `Welcome to your profile!`
-    }
-
-    Header.appendChild(Container)
-}
-
-try { Start() } catch {} // :3
+async function get(url) {
+    return await (await fetch(url)).json();
+ }
+ 
+ async function getFriendsForUserId(userId) {
+     let friendObjects = (await get(`https://friends.roblox.com/v1/users/${userId}/friends`)).data;
+     const friends = [];
+ 
+     for (const friend of friendObjects) {
+         friends.push({name: friend.name, id: friend.id});
+     }
+ 
+     return friends;
+ }
+ 
+ async function getMutualFriends(userId, targetId) {
+     const userFriends = await getFriendsForUserId(userId);
+     const targetFriends = await getFriendsForUserId(targetId);
+ 
+     return userFriends.filter(friend => targetFriends.find(targetFriend => targetFriend.id == friend.id));
+ }
+ 
+ async function start() {
+     const targetId = document.URL.match(/\d+/)[0];
+     const userId = (await get(`https://www.roblox.com/mobileapi/userinfo`)).UserID
+ 
+     if (targetId == userId) return;
+ 
+     let header = document.getElementsByClassName("header-caption")[0];
+     let container = document.createElement("p");
+ 
+     header.appendChild(container);
+ 
+     container.innerText = "Loading Mutual friends...";
+ 
+     const mutualFriends = await getMutualFriends(userId, targetId);
+ 
+     if (mutualFriends.length > 0) {
+         container.innerText = "Mutual Friends: ";
+ 
+         for(const [index, friend] of mutualFriends.entries()) {
+             let a = document.createElement("a");
+             a.setAttribute("href", `https://www.roblox.com/users/${friend.id}/profile`);
+             a.setAttribute("style", "font-weight:bold");
+             a.innerHTML = friend.name;
+             
+             if(index && index != mutualFriends.length) {
+                 container.append(", ");
+             }
+ 
+             container.appendChild(a);
+         }
+     } else {
+         container.innerText = "No Mutual friends!";
+     }
+ }
+ 
+ window.addEventListener("load", start);
