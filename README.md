@@ -13,4 +13,4 @@ Make a pull request! But please follow the CONTRIBUTING.md guidelines.
 
 ### Example
 
-![example](https://i.imgur.com/EszGRe2.png)
+![example](https://i.imgur.com/TT1T4sz.png)
