@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Mutual friends
+// @name         Mutual Friends
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  List mutual friends
