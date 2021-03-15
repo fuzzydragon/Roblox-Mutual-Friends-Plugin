@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mutual Friends
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  List mutual friends
 // @author       AndrewJ.
 // @match        https://www.roblox.com/users/*
@@ -16,7 +16,7 @@ async function Get(URL) {
 }
 
 async function GetFriendsForUserId(UserId) {
-    let FriendObjects = (await Get(`https://friends.roblox.com/v1/users/${UserId}/friends/`)).data
+    const FriendObjects = (await Get(`https://friends.roblox.com/v1/users/${UserId}/friends/`)).data
     const Friends = []
 
     for (const Friend of FriendObjects) {
@@ -29,7 +29,7 @@ async function GetFriendsForUserId(UserId) {
 async function GetMutualFriends(UserId, TargetId) {
     const UserFriends = await GetFriendsForUserId(UserId)
     const TargetFriends = await GetFriendsForUserId(TargetId)
-    
+
     const Mutuals = []
 
     for (const UserFriend of UserFriends) {
@@ -45,8 +45,8 @@ async function Start() {
     const TargetId = document.URL.match(/\d+/)[0]
     const UserId = (await Get(`https://www.roblox.com/mobileapi/userinfo`)).UserID
 
-    let Header = document.getElementsByClassName(`header-caption`)[0]
-    let Container = document.createElement(`p`)
+    const Header = document.getElementsByClassName(`header-caption`)[0]
+    const Container = document.createElement(`p`)
 
     Container.innerText = `Loading Mutual Friends...`
 
@@ -54,7 +54,16 @@ async function Start() {
         const MutualFriends = await GetMutualFriends(UserId, TargetId)
 
         if (MutualFriends.length > 0) {
-            Container.innerText = `Mutual Friends: ${MutualFriends.join(`, `)}`
+            Container.innerText = `Mutual Friends: `
+
+            for (const Friend of MutualFriends) {
+                const NameElement = document.createElement(`a`)
+
+                NameElement.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${Friend}`)
+                NameElement.innerText = `${Friend} `
+                
+                Container.appendChild(NameElement)
+            }
         } else {
             Container.innerText = `No Mutual Friends!`
         }
