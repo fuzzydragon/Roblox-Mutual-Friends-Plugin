@@ -33,7 +33,6 @@ async function GetMutualFriends(UserId, TargetId) {
     const Mutuals = []
 
     for (const UserFriend of UserFriends) {
-        console.log(UserFriend, TargetFriends.includes(UserFriend))
         if (TargetFriends.includes(UserFriend)) {
             Mutuals.push(UserFriend)
         }
@@ -45,8 +44,6 @@ async function GetMutualFriends(UserId, TargetId) {
 async function Start() {
     const TargetId = document.URL.match(/\d+/)[0]
     const UserId = (await Get(`https://www.roblox.com/mobileapi/userinfo`)).UserID
-
-    console.log(TargetId, UserId)
 
     let Header = document.getElementsByClassName(`header-caption`)[0]
     let Container = document.createElement(`p`)
