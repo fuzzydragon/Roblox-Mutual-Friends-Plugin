@@ -1,4 +1,7 @@
 # Mutual-Friends-Plugin
+
+![icon](https://i.imgur.com/YVbJupc.png)
+
 A javascript script meant to be ran with a plugin such as TamperMonkey. Allows you to see what mutual friends you have on someone's ROBLOX profile. 
 
 ### Want to contribute? 
