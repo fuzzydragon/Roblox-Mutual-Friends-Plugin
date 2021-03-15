@@ -3,7 +3,7 @@ A javascript script meant to be ran with a plugin such as TamperMonkey. Allows y
 
 ### Want to contribute? 
 
-Make a pull request!
+Make a pull request! But please follow the CONTRIBUTING.md guidelines. 
 
 ### Don't want to use TamperMonkey? 
 * Firefox: https://addons.mozilla.org/en-US/firefox/addon/roblox-mutual-friends-plugin/
