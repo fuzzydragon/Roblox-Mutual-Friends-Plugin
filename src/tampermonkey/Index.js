@@ -56,12 +56,16 @@ async function Start() {
         if (MutualFriends.length > 0) {
             Container.innerText = `Mutual Friends: `
 
-            for (const Friend of MutualFriends) {
+            for (const [Index, Friend] in MutualFriends.entries()) {
                 const NameElement = document.createElement(`a`)
 
                 NameElement.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${Friend}`)
                 NameElement.innerText = `${Friend} `
                 
+                if(Index + 1 != MutualFriends.length) {
+                    NameElement.append(", ");
+                }
+
                 Container.appendChild(NameElement)
             }
         } else {
