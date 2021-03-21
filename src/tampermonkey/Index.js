@@ -78,4 +78,4 @@ async function Start() {
     Header.appendChild(Container)
 }
 
-try { Start() } catch {} // :3
+window.addEventListener(`load`, Start)
