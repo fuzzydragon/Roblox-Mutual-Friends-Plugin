@@ -1,6 +1,6 @@
 {
     "name": "Mutual Friends Plugin",
-    "version": "0.1",
+    "version": "0.3",
     "manifest_version": 2,
     "description": "View the mutual friends for a specific player.",
     "browser_action": {
