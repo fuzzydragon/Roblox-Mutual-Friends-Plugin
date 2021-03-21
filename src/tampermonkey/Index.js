@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mutual Friends
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.3
 // @description  List mutual friends
 // @author       AndrewJ.
 // @match        https://www.roblox.com/users/*
