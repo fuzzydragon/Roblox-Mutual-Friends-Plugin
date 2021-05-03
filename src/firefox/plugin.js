@@ -38,6 +38,7 @@ async function Start() {
     const Header = document.getElementsByClassName(`header-caption`)[0]
     const Container = document.createElement(`p`)
 
+    Header.style.height = "auto";
     Container.innerText = `Loading Mutual Friends...`
 
     if (TargetId != UserId) {
