@@ -9,8 +9,10 @@ A javascript script meant to be ran with a plugin such as TamperMonkey. Allows y
 Make a pull request! But please follow the CONTRIBUTING.md guidelines. 
 
 ### Don't want to use TamperMonkey? 
+*The FireFox plugin will no longer be maintained. I will just keep a manifest.json file in the `/src` folder*
 * Firefox: https://addons.mozilla.org/en-US/firefox/addon/roblox-mutual-friends-plugin/
+
 
 ### Example
 
-![example](https://i.imgur.com/TT1T4sz.png)
+![image](https://user-images.githubusercontent.com/79267815/123504616-2b60e500-d620-11eb-8a00-fc53cdce873e.png)
