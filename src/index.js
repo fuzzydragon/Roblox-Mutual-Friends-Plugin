@@ -48,6 +48,7 @@ async function start() {
 
 		reference.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${friend.name}`)
 		reference.setAttribute(`title`, friend.displayName)
+        
 		reference.innerText = friend.name
 
 		if (index < mutuals.length - 1) {
