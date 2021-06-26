@@ -6,7 +6,7 @@ A javascript script meant to be ran with a plugin such as TamperMonkey. Allows y
 
 ### Want to contribute? 
 
-Make a pull request! But please follow the CONTRIBUTING.md guidelines. 
+Just make a pull request. If I have any comments then I will reply to your pull request. 
 
 ### Don't want to use TamperMonkey? 
 *The FireFox plugin will no longer be maintained. I will just keep a manifest.json file in the `/src` folder*
