@@ -39,7 +39,7 @@ async function start() {
 
 	const mutuals = await getMutualFriendsForUserids(user, target)
 
-	if (mutuals.length < 0) return
+	if (mutuals.length == 0) return
 
 	container.innerText = `Mutuals: `
 
