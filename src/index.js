@@ -11,7 +11,7 @@
 async function get(url) {
 	return fetch(url)
 		.then(response => response.json())
-} 
+}
 
 async function getFriendsForUserId(userId) {
 	return get(`https://friends.roblox.com/v1/users/${userId}/friends/`)
@@ -34,12 +34,17 @@ async function start() {
 	const header = document.getElementsByClassName(`header-caption`)[0]
 	const container = document.createElement(`p`)
 
-	header.style.height = `auto`
+    header.style.height = `auto`
 	container.innerText = `Loading mutual friends...`
+
+	header.appendChild(container)
 
 	const mutuals = await getMutualFriendsForUserids(user, target)
 
-	if (mutuals.length == 0) return
+	if (mutuals.length == 0) {
+        container.innerText = `No mutual friends`
+        return
+    }
 
 	container.innerText = `Mutuals: `
 
@@ -48,7 +53,7 @@ async function start() {
 
 		reference.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${friend.name}`)
 		reference.setAttribute(`title`, friend.displayName)
-        
+
 		reference.innerText = friend.name
 
 		if (index < mutuals.length - 1) {
@@ -57,8 +62,6 @@ async function start() {
 
 		container.append(reference)
 	}
-
-	header.appendChild(container)
 }
 
 window.addEventListener(`load`, start)
