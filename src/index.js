@@ -34,7 +34,7 @@ async function start() {
 	const header = document.getElementsByClassName(`header-caption`)[0]
 	const container = document.createElement(`p`)
 
-    header.style.height = `auto`
+	header.style.height = `auto`
 	container.innerText = `Loading mutual friends...`
 
 	header.appendChild(container)
@@ -42,9 +42,9 @@ async function start() {
 	const mutuals = await getMutualFriendsForUserids(user, target)
 
 	if (mutuals.length == 0) {
-        container.innerText = `No mutual friends.`
-        return
-    }
+		container.innerText = `No mutual friends.`
+		return
+	}
 
 	container.innerText = `Mutuals: `
 
