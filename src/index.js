@@ -33,11 +33,9 @@ async function start() {
 
 	const header = document.getElementsByClassName(`header-caption`)[0]
 	const container = document.createElement(`p`)
-
-	header.style.height = `auto`
-	container.innerText = `Loading mutual friends...`
-
 	header.appendChild(container)
+
+	container.innerText = `Loading mutual friends...`
 
 	const mutuals = await getMutualFriendsForUserids(user, target)
 
@@ -46,21 +44,22 @@ async function start() {
 		return
 	}
 
-	container.innerText = `Mutuals: `
+	header.style.height = `auto`
+	container.innerText = `Mutuals (${mutuals.length}): `
 
 	for (const [index, friend] of mutuals.entries()) {
 		const reference = document.createElement(`a`)
 
 		reference.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${friend.name}`)
 		reference.setAttribute(`title`, friend.displayName)
-
+		reference.setAttribute(`class`, `text-name`)
 		reference.innerText = friend.name
 
-		if (index < mutuals.length - 1) {
-			reference.append(`, `)
-		}
-
 		container.append(reference)
+
+		if (index < mutuals.length - 1) {
+			container.append(`, `)
+		}
 	}
 }
 
