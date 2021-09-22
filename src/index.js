@@ -52,7 +52,7 @@ async function start() {
 
 		reference.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${friend.name}`)
 		reference.setAttribute(`title`, friend.displayName)
-		reference.setAttribute(`class`, `text-name`)
+		reference.setAttribute(`class`, `text-link`)
 		reference.innerText = friend.name
 
 		container.append(reference)
