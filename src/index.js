@@ -29,7 +29,7 @@ async function start() {
 	const target = document.URL.match(/\d+/)[0]
 	const user = Roblox.CurrentUser.userId
 
-	if (target == user) return
+	if (!user || target == user) return
 
 	const header = document.getElementsByClassName(`header-caption`)[0]
 	const container = document.createElement(`p`)
