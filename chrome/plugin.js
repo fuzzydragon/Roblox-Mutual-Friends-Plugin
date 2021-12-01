@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name         Mutual Friends
-// @namespace    http://tampermonkey.net/
-// @version      0.4
-// @description  List mutual friends
-// @author       AndrewJ.
-// @match        https://www.roblox.com/users/*
-// @grant        none
-// ==/UserScript==
-
 async function get(url) {
 	return fetch(url)
 		.then(response => response.json())

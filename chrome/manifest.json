@@ -1,0 +1,25 @@
+{
+    "name": "Roblox Mutual Friends",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "View the mutual friends for a specific player.",
+    "icons": {
+        "128": "icon.png"
+    },
+    "host_permissions": [
+        "*://*.roblox.com/users/*/profile"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["/plugin.js"],
+            "matches": ["*://*.roblox.com/*"]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": ["*://*.roblox.com/users/*/profile"],
+            "run_at": "document_end",
+            "js": ["/index.js"]
+        }
+    ]
+}
