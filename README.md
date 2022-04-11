@@ -11,8 +11,8 @@ Just make a pull request. If I have any comments then I will reply to your pull 
 ### Don't want to use TamperMonkey? 
 *The FireFox plugin will no longer be maintained. I will just keep a manifest.json file in the `/src` folder*
 * Firefox: https://addons.mozilla.org/en-US/firefox/addon/roblox-mutual-friends-plugin/
-
+* Chrome: https://chrome.google.com/webstore/detail/roblox-mutual-friends/oegjdejbkpabhbblihligblbnbaophnf
 
 ### Example
 
-![image](https://user-images.githubusercontent.com/79267815/123504616-2b60e500-d620-11eb-8a00-fc53cdce873e.png)
+![image](https://user-images.githubusercontent.com/22308762/162650830-bbec98e3-41d9-422e-b6cf-961adb09c2a9.png)
