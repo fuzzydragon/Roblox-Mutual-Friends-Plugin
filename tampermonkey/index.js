@@ -51,7 +51,7 @@ async function start() {
 	for (const [index, friend] of mutuals.entries()) {
 		const reference = document.createElement(`a`)
 
-		reference.setAttribute(`href`, `http://www.roblox.com/User.aspx?UserName=${friend.name}`)
+		reference.setAttribute(`href`, `https://roblox.com/users/${friend.id}/profile`)
 		reference.setAttribute(`title`, friend.displayName)
 		reference.setAttribute(`class`, `text-link`)
 		reference.innerText = friend.name
